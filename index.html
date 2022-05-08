@@ -162,7 +162,7 @@
 
     // Load model
      $("document").ready (async function() {
-        model = await tf.loadLayersModel('http://127.0.0.1:5500/MiAI_Tensorflowjs-main/static/models/model.json');
+        model = await tf.loadLayersModel('https://github.com/HyNguye/LVTN/tree/master/static/models/model.json');
         console.log('Load model');
         console.log(model.summary());
     });
