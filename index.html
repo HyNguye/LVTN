@@ -124,12 +124,12 @@
 
 <body>
 <div class='header'>
-    PHÂN LOẠI UNG THƯ
+    HỆ THỐNG PHÂN LOẠI MẪU BỆNH PHẨM
 </div>
 <div class='content'>
 
     <div class='upload_part'>
-        <button class='upload_button' id="upload_button">Chọn file ảnh giải phẫu bệnh..</button>
+        <button class='upload_button' id="upload_button">Chọn file ảnh ..</button>
         <div class='upload_hint' id='upload_hint'>
             Các định dạng được hỗ trợ: PNG, JPG và JPEG
         </div>
@@ -152,11 +152,11 @@
 
 </body>
 <script>
-    const CANCER_CLASS = {
+    const FLOWER_CLASS = {
         0: 'Ung thư biểu mô tuyến đại tràng',
-        1: 'Ung thư lành tính đại tràng',
+        1: 'Mô đại tràng lành tính',
         2: 'Ung thư biểu mô tuyến phổi',
-        3: 'Ung thư lành tính phổi',
+        3: 'Mô phổi lành tính',
         4: 'Ung thư biểu mô tế bào vảy phổi'
     };
 
@@ -180,8 +180,9 @@
      let tensor = img
             .resizeNearestNeighbor([224, 224])
             .toFloat()
-          //  .sub(normalizationOffset)
-          //  .div(normalizationOffset)
+           // .sub(normalizationOffset)
+           // .div(normalizationOffset)
+            .reverse(2)
             .expandDims();
 
     // 2. Predict
@@ -194,7 +195,7 @@
         .map(function (p, i) {
             return {
                 probability: p,
-                className: CANCER_CLASS[i]
+                className: FLOWER_CLASS[i]
             };
         }).sort(function (a, b) {
             return b.probability - a.probability;
